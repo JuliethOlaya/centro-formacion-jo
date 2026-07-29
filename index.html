@@ -1,3 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mensaje de Bienvenida</title>
+
+<style>
+
+body{
+margin:0;
+background:#f7f5ff;
+font-family:Arial,Helvetica,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.tarjeta{
+background:white;
+width:340px;
+padding:25px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+text-align:center;
+}
+
+h2{
+margin-top:0;
+margin-bottom:25px;
+color:#7B5CFA;
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:12px;
+background:#7B5CFA;
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:.25s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="tarjeta">
+
+<h2>📋 Mensaje de Bienvenida</h2>
+
+<button id="boton" onclick="copiarMensaje()">
+📋 Copiar mensaje
+</button>
+
+</div>
+
 <script>
 
 async function copiarMensaje(){
@@ -10,29 +79,34 @@ const respuesta=await fetch("https://raw.githubusercontent.com/JuliethOlaya/cent
 
 const texto=await respuesta.text();
 
-// Primer intento (API moderna)
 try{
-    await navigator.clipboard.writeText(texto);
-}
-catch(e){
 
-    // Segundo intento (método clásico)
-    const area=document.createElement("textarea");
-    area.value=texto;
-    document.body.appendChild(area);
+await navigator.clipboard.writeText(texto);
 
-    area.select();
-    area.setSelectionRange(0,999999);
+}catch(e){
 
-    document.execCommand("copy");
+const area=document.createElement("textarea");
 
-    document.body.removeChild(area);
+area.value=texto;
+
+document.body.appendChild(area);
+
+area.select();
+
+area.setSelectionRange(0,999999);
+
+document.execCommand("copy");
+
+document.body.removeChild(area);
+
 }
 
 boton.innerHTML="✅ ¡Mensaje copiado!";
 
 setTimeout(()=>{
+
 boton.innerHTML="📋 Copiar mensaje";
+
 },2000);
 
 }catch(error){
@@ -40,7 +114,9 @@ boton.innerHTML="📋 Copiar mensaje";
 boton.innerHTML="❌ Error";
 
 setTimeout(()=>{
+
 boton.innerHTML="📋 Copiar mensaje";
+
 },2000);
 
 }
@@ -48,3 +124,7 @@ boton.innerHTML="📋 Copiar mensaje";
 }
 
 </script>
+
+</body>
+
+</html>
