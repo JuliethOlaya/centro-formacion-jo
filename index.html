@@ -2,13 +2,16 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Centro de Formación J.O.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mensaje de Bienvenida</title>
+
 <style>
 
 body{
     margin:0;
-    font-family:Arial,sans-serif;
     background:#f7f5ff;
+    font-family:Arial, Helvetica, sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -18,46 +21,91 @@ body{
 .tarjeta{
     background:white;
     width:340px;
-    border-radius:20px;
-    padding:30px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    border-radius:18px;
+    padding:25px;
     text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
-h1{
+h2{
     color:#7B5CFA;
     margin-top:0;
 }
 
+p{
+    color:#555;
+    line-height:1.5;
+}
+
 button{
+    width:100%;
     background:#7B5CFA;
     color:white;
     border:none;
-    padding:15px 25px;
     border-radius:12px;
-    cursor:pointer;
+    padding:16px;
     font-size:16px;
+    cursor:pointer;
     transition:.3s;
 }
 
 button:hover{
-    transform:scale(1.05);
+    transform:scale(1.03);
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="tarjeta">
 
-<h1>Centro de Formación J.O.</h1>
+<h2>📋 Mensaje de Bienvenida</h2>
 
-<p>Si puedes leer esto, significa que tu aplicación ya está funcionando correctamente.</p>
+<p>
+Presiona el botón para copiar automáticamente el mensaje oficial.
+</p>
 
-<button>Primer botón</button>
+<button onclick="copiarMensaje()" id="boton">
+📋 Copiar mensaje
+</button>
 
 </div>
+
+<script>
+
+async function copiarMensaje(){
+
+const boton=document.getElementById("boton");
+
+try{
+
+const respuesta=await fetch("https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/mensaje-bienvenida.txt");
+
+const texto=await respuesta.text();
+
+await navigator.clipboard.writeText(texto);
+
+boton.innerHTML="✅ ¡Mensaje copiado!";
+
+setTimeout(()=>{
+boton.innerHTML="📋 Copiar mensaje";
+},2000);
+
+}catch(error){
+
+boton.innerHTML="❌ Error";
+
+setTimeout(()=>{
+boton.innerHTML="📋 Copiar mensaje";
+},2000);
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
