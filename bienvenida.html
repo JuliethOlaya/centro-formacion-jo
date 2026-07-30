@@ -30,18 +30,19 @@ body{
 h2{
     color:#7B5CFA;
     margin-top:0;
-    margin-bottom:10px;
+    margin-bottom:15px;
 }
 
 .subtitulo{
     font-weight:bold;
-    margin-top:20px;
-    margin-bottom:12px;
+    color:#5a5a5a;
+    margin-bottom:15px;
+    line-height:1.5;
 }
 
-ul{
+.descripcion{
     text-align:left;
-    padding-left:20px;
+    line-height:1.6;
     margin-bottom:25px;
 }
 
@@ -55,6 +56,7 @@ button{
     font-size:16px;
     cursor:pointer;
     margin-top:12px;
+    transition:.3s;
 }
 
 button:hover{
@@ -69,17 +71,15 @@ button:hover{
 
 <div class="tarjeta">
 
-<h2>👋 Bienvenida</h2>
+<h2>👋 Mensaje de Bienvenida</h2>
 
 <div class="subtitulo">
-💡 Utilízala cuando el cliente pregunte:
+💡 Utilízala cuando una persona te escriba por primera vez.
 </div>
 
-<ul>
-<li>Hola.</li>
-<li>Quiero información.</li>
-<li>Me interesa.</li>
-</ul>
+<div class="descripcion">
+Si utilizas <strong>WhatsApp normal</strong>, envíala manualmente al iniciar la conversación.
+</div>
 
 <button onclick="copiarAtajo()" id="btn1">
 📋 Copiar atajo
@@ -125,7 +125,7 @@ boton.innerHTML=textoFinal;
 
 setTimeout(()=>{
 
-if(textoFinal.includes("atajo"))
+if(textoFinal.includes("Atajo"))
 boton.innerHTML="📋 Copiar atajo";
 else
 boton.innerHTML="💬 Copiar respuesta";
@@ -138,7 +138,7 @@ boton.innerHTML="❌ Error";
 
 setTimeout(()=>{
 
-if(textoFinal.includes("atajo"))
+if(textoFinal.includes("Atajo"))
 boton.innerHTML="📋 Copiar atajo";
 else
 boton.innerHTML="💬 Copiar respuesta";
