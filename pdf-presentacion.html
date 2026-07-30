@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PDF de Presentación</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#f7f5ff;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.tarjeta{
+    background:white;
+    width:340px;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+h2{
+    color:#7B5CFA;
+    margin-top:0;
+    margin-bottom:25px;
+}
+
+button{
+    width:100%;
+    background:#7B5CFA;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:16px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="tarjeta">
+
+<h2>📄 PDF de Presentación</h2>
+
+<button onclick="descargarPDF()">
+
+⬇️ Descargar PDF
+
+</button>
+
+</div>
+
+<script>
+
+function descargarPDF(){
+
+window.location.href="https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/Presentacion.pdf";
+
+}
+
+</script>
+
+</body>
+</html>
