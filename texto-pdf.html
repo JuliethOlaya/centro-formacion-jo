@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Texto para PDF</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#f7f5ff;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.tarjeta{
+    background:white;
+    width:340px;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+h2{
+    color:#7B5CFA;
+    margin-top:0;
+    margin-bottom:25px;
+}
+
+button{
+    width:100%;
+    background:#7B5CFA;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:16px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="tarjeta">
+
+<h2>📄 Texto para PDF</h2>
+
+<button onclick="copiarTexto()" id="boton">
+
+📋 Copiar texto
+
+</button>
+
+</div>
+
+<script>
+
+async function copiarTexto(){
+
+const boton=document.getElementById("boton");
+
+try{
+
+const respuesta=await fetch("https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/texto-pdf.txt");
+
+const texto=await respuesta.text();
+
+try{
+await navigator.clipboard.writeText(texto);
+}
+catch(e){
+
+const area=document.createElement("textarea");
+area.value=texto;
+document.body.appendChild(area);
+
+area.select();
+area.setSelectionRange(0,999999);
+
+document.execCommand("copy");
+
+document.body.removeChild(area);
+
+}
+
+boton.innerHTML="✅ ¡Texto copiado!";
+
+setTimeout(()=>{
+boton.innerHTML="📋 Copiar texto";
+},2000);
+
+}catch(error){
+
+boton.innerHTML="❌ Error";
+
+setTimeout(()=>{
+boton.innerHTML="📋 Copiar texto";
+},2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
