@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Plantilla para guardar clientes</title>
+
+<style>
+
+body{
+margin:0;
+background:#f7f5ff;
+font-family:Arial,Helvetica,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.tarjeta{
+
+background:white;
+width:340px;
+padding:28px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+h2{
+
+margin-top:0;
+color:#7B5CFA;
+
+}
+
+p{
+
+line-height:1.7;
+color:#555;
+margin-bottom:25px;
+
+}
+
+button{
+
+width:100%;
+background:#7B5CFA;
+color:white;
+border:none;
+padding:16px;
+font-size:16px;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.02);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="tarjeta">
+
+<h2>👤 Plantilla para guardar clientes</h2>
+
+<p>
+
+Copia esta plantilla y reemplaza únicamente el nombre del cliente y la fecha correspondiente.
+
+</p>
+
+<button onclick="copiar()" id="boton">
+
+📋 Copiar plantilla
+
+</button>
+
+</div>
+
+<script>
+
+async function copiar(){
+
+const boton=document.getElementById("boton");
+
+try{
+
+const respuesta=await fetch("https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/plantilla-cliente.txt");
+
+const texto=await respuesta.text();
+
+await navigator.clipboard.writeText(texto);
+
+boton.innerHTML="✅ Plantilla copiada";
+
+setTimeout(()=>{
+
+boton.innerHTML="📋 Copiar plantilla";
+
+},2000);
+
+}catch{
+
+boton.innerHTML="❌ Error";
+
+setTimeout(()=>{
+
+boton.innerHTML="📋 Copiar plantilla";
+
+},2000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
