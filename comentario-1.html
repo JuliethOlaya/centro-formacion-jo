@@ -2,128 +2,68 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Respuesta para comentarios</title>
-
+<title>Texto para copiar</title>
 <style>
-
 body{
 margin:0;
-background:#f7f5ff;
-font-family:Arial,Helvetica,sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
-min-height:100vh;
+height:100vh;
+background:#f5f5f5;
+font-family:Arial,sans-serif;
 }
-
-.tarjeta{
-
-background:white;
-width:340px;
-padding:28px;
-border-radius:18px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,.12);
-
-}
-
-h2{
-
-margin-top:0;
-color:#7B5CFA;
-
-}
-
-p{
-
-line-height:1.7;
-color:#555;
-margin-bottom:25px;
-
-}
-
 button{
-
-width:100%;
-background:#7B5CFA;
-color:white;
+padding:16px 28px;
+font-size:18px;
 border:none;
-padding:16px;
-font-size:16px;
 border-radius:12px;
+background:#8e44ad;
+color:white;
 cursor:pointer;
 transition:.3s;
-
 }
-
 button:hover{
-
-transform:scale(1.02);
-
+background:#732d91;
 }
-
+#mensaje{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#333;
+color:#fff;
+padding:10px 18px;
+border-radius:8px;
+display:none;
+font-size:15px;
+}
 </style>
-
 </head>
-
 <body>
 
-<div class="tarjeta">
-
-<h2>💬 Respuesta para comentarios</h2>
-
-<p>
-
-Copia este mensaje y utilízalo para responder los comentarios que recibas en tus publicaciones.
-
-</p>
-
-<button onclick="copiar()" id="boton">
-
-📋 Copiar mensaje
-
+<button onclick="copiarTexto()">
+Copiar texto
 </button>
 
+<div id="mensaje">
+✅ Texto copiado
 </div>
 
 <script>
+function copiarTexto(){
 
-async function copiar(){
+const texto=`Hola, claro que si, ve a mi perfil o al privado`;
 
-const boton=document.getElementById("boton");
-
-try{
-
-const respuesta=await fetch("https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/comentario-1.txt");
-
-const texto=await respuesta.text();
-
-await navigator.clipboard.writeText(texto);
-
-boton.innerHTML="✅ Mensaje copiado";
-
+navigator.clipboard.writeText(texto).then(()=>{
+const aviso=document.getElementById("mensaje");
+aviso.style.display="block";
 setTimeout(()=>{
-
-boton.innerHTML="📋 Copiar mensaje";
-
-},2000);
-
-}catch{
-
-boton.innerHTML="❌ Error";
-
-setTimeout(()=>{
-
-boton.innerHTML="📋 Copiar mensaje";
-
-},2000);
+aviso.style.display="none";
+},1800);
+});
 
 }
-
-}
-
 </script>
 
 </body>
