@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -57,44 +59,70 @@ button:hover{
 
 <div class="tarjeta">
 
-<h2>🖼️ Imagen 2</h2>
+    <h2>🖼️ Imagen 2</h2>
 
-<button onclick="descargarImagen()" id="boton">
-
-📥 Descargar imagen
-
-</button>
+    <button onclick="descargarImagen()" id="boton">
+        📥 Descargar imagen
+    </button>
 
 </div>
 
 <script>
 
-function descargarImagen(){
+async function descargarImagen(){
 
-const imagen = "https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/Imagen%202.png";
+    const boton = document.getElementById("boton");
 
-const enlace = document.createElement("a");
+    try{
 
-enlace.href = imagen;
-enlace.download = "Imagen 2.png";
+        const respuesta = await fetch("./Imagen%202.png");
 
-document.body.appendChild(enlace);
+        if(!respuesta.ok){
+            throw new Error("No se encontró la imagen");
+        }
 
-enlace.click();
+        const archivo = await respuesta.blob();
 
-document.body.removeChild(enlace);
+        const url = URL.createObjectURL(archivo);
 
-const boton = document.getElementById("boton");
+        const enlace = document.createElement("a");
 
-boton.innerHTML = "✅ ¡Imagen descargada!";
+        enlace.href = url;
 
-setTimeout(()=>{
-    boton.innerHTML = "📥 Descargar imagen";
-},2000);
+        enlace.download = "Imagen 2.png";
+
+        document.body.appendChild(enlace);
+
+        enlace.click();
+
+        document.body.removeChild(enlace);
+
+        URL.revokeObjectURL(url);
+
+        boton.innerHTML = "✅ ¡Imagen descargada!";
+
+        setTimeout(() => {
+
+            boton.innerHTML = "📥 Descargar imagen";
+
+        },2000);
+
+    }catch(error){
+
+        boton.innerHTML = "❌ Error al descargar";
+
+        setTimeout(() => {
+
+            boton.innerHTML = "📥 Descargar imagen";
+
+        },2500);
+
+    }
 
 }
 
 </script>
 
 </body>
+
 </html>
