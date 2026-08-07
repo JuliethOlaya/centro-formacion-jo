@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Respuesta 1 - Comentarios TikTok</title>
+<title>Respuesta 2 - Comentarios TikTok</title>
 
 <style>
 
@@ -57,11 +59,11 @@ button:hover{
 
 <div class="tarjeta">
 
-<h2>💬 Respuesta 1</h2>
+<h2>💬 Respuesta 2</h2>
 
 <button onclick="copiarRespuesta()" id="boton">
 
-📋 Copiar respuesta
+📋 Copiar texto
 
 </button>
 
@@ -80,15 +82,20 @@ const respuesta=await fetch("https://raw.githubusercontent.com/JuliethOlaya/cent
 const texto=await respuesta.text();
 
 try{
+
 await navigator.clipboard.writeText(texto);
+
 }
 catch(e){
 
 const area=document.createElement("textarea");
+
 area.value=texto;
+
 document.body.appendChild(area);
 
 area.select();
+
 area.setSelectionRange(0,999999);
 
 document.execCommand("copy");
@@ -97,10 +104,12 @@ document.body.removeChild(area);
 
 }
 
-boton.innerHTML="✅ ¡Respuesta copiada!";
+boton.innerHTML="✅ ¡Texto copiado!";
 
 setTimeout(()=>{
-boton.innerHTML="📋 Copiar respuesta";
+
+boton.innerHTML="📋 Copiar texto";
+
 },2000);
 
 }catch(error){
@@ -108,7 +117,9 @@ boton.innerHTML="📋 Copiar respuesta";
 boton.innerHTML="❌ Error";
 
 setTimeout(()=>{
-boton.innerHTML="📋 Copiar respuesta";
+
+boton.innerHTML="📋 Copiar texto";
+
 },2000);
 
 }
@@ -118,4 +129,5 @@ boton.innerHTML="📋 Copiar respuesta";
 </script>
 
 </body>
+
 </html>
