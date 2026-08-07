@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    height:100vh;
 }
 
 .tarjeta{
@@ -31,7 +32,6 @@ h2{
     color:#7B5CFA;
     margin-top:0;
     margin-bottom:25px;
-    font-size:24px;
 }
 
 button{
@@ -74,22 +74,20 @@ async function descargarImagen(){
 
     try{
 
-        const respuesta = await fetch(
-            "https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/imagen-1.png"
-        );
+        const respuesta = await fetch("./Imagen%201.png");
 
         if(!respuesta.ok){
-            throw new Error("No se pudo encontrar la imagen");
+            throw new Error("No se encontró la imagen");
         }
 
         const archivo = await respuesta.blob();
 
-        const url = window.URL.createObjectURL(archivo);
+        const url = URL.createObjectURL(archivo);
 
         const enlace = document.createElement("a");
 
         enlace.href = url;
-        enlace.download = "imagen-1.png";
+        enlace.download = "Imagen 1.png";
 
         document.body.appendChild(enlace);
 
@@ -97,21 +95,21 @@ async function descargarImagen(){
 
         document.body.removeChild(enlace);
 
-        window.URL.revokeObjectURL(url);
+        URL.revokeObjectURL(url);
 
         boton.innerHTML = "✅ ¡Imagen descargada!";
 
-        setTimeout(()=>{
+        setTimeout(() => {
             boton.innerHTML = "📥 Descargar imagen";
-        },2000);
+        }, 2000);
 
     }catch(error){
 
         boton.innerHTML = "❌ Error al descargar";
 
-        setTimeout(()=>{
+        setTimeout(() => {
             boton.innerHTML = "📥 Descargar imagen";
-        },2500);
+        }, 2000);
 
     }
 
@@ -120,4 +118,5 @@ async function descargarImagen(){
 </script>
 
 </body>
+
 </html>
