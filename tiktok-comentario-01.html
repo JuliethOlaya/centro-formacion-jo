@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Respuesta Rápida - TikTok</title>
+<title>Respuestas para comentarios</title>
 
 <style>
 
@@ -15,7 +17,7 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    height:100vh;
 }
 
 .tarjeta{
@@ -30,20 +32,21 @@ body{
 h2{
     color:#7B5CFA;
     margin-top:0;
-    margin-bottom:15px;
+    margin-bottom:18px;
 }
 
-.subtitulo{
-    font-weight:bold;
-    color:#5a5a5a;
-    margin-bottom:15px;
-    line-height:1.5;
+h4{
+    margin:0 0 12px 0;
+    color:#333;
+    font-size:14px;
+    line-height:1.4;
 }
 
-.descripcion{
-    text-align:left;
+p{
+    font-size:14px;
     line-height:1.6;
-    margin-bottom:25px;
+    color:#222;
+    margin-bottom:20px;
 }
 
 button{
@@ -55,12 +58,11 @@ button{
     padding:16px;
     font-size:16px;
     cursor:pointer;
-    margin-top:12px;
     transition:.3s;
 }
 
 button:hover{
-    transform:scale(1.02);
+    transform:scale(1.03);
 }
 
 </style>
@@ -71,89 +73,32 @@ button:hover{
 
 <div class="tarjeta">
 
-<h2>💬 Comentarios TikTok</h2>
+<h2>💬 Respuestas para comentarios</h2>
 
-<div class="subtitulo">
-💡 Utilízalo cuando una persona comente una de tus publicaciones.
-</div>
+<h4>
+💡 Utilízalas cuando una persona comente una de tus publicaciones.
+</h4>
 
-<div class="descripcion">
-Este mensaje es corto para responder comentarios dentro de TikTok y dirigir a la persona hacia tu perfil o al chat privado.
-</div>
+<p>
+Aquí encontrarás <strong>3 opciones de respuesta</strong> que puedes variar y adaptar según la situación, para evitar repetir siempre el mismo mensaje y mantener una comunicación más natural con las personas interesadas.
+</p>
 
-<button onclick="copiarRespuesta()" id="btn1">
-📋 Copiar texto
+<button onclick="abrirRespuestas()">
+📋 Copiar Texto
 </button>
 
 </div>
 
 <script>
 
-async function copiar(url,boton,textoFinal){
+function abrirRespuestas(){
 
-try{
-
-const respuesta=await fetch(url);
-
-const texto=await respuesta.text();
-
-try{
-
-await navigator.clipboard.writeText(texto);
-
-}catch{
-
-const area=document.createElement("textarea");
-
-area.value=texto;
-
-document.body.appendChild(area);
-
-area.select();
-
-document.execCommand("copy");
-
-document.body.removeChild(area);
-
-}
-
-boton.innerHTML=textoFinal;
-
-setTimeout(()=>{
-
-boton.innerHTML="📋 Copiar texto";
-
-},2000);
-
-}catch{
-
-boton.innerHTML="❌ Error";
-
-setTimeout(()=>{
-
-boton.innerHTML="📋 Copiar texto";
-
-},2000);
-
-}
-
-}
-
-function copiarRespuesta(){
-
-copiar(
-
-"https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/tiktok-comentario-01.txt",
-
-document.getElementById("btn1"),
-
-"✅ Texto copiado"
-
-);
+window.location.href="https://julietholaya.github.io/centro-formacion-jo/tiktok-comentario-01.html";
 
 }
 
 </script>
 
 </body>
+
 </html>
