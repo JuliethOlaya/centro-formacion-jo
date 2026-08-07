@@ -75,7 +75,7 @@ async function descargarVideo(){
 
     try{
 
-        const respuesta = await fetch("./V%C3%ADdeo%203.mp4");
+        const respuesta = await fetch("./Video%203.mp4");
 
         if(!respuesta.ok){
             throw new Error("No se encontró el video");
@@ -89,7 +89,7 @@ async function descargarVideo(){
 
         enlace.href = url;
 
-        enlace.download = "Vídeo 3.mp4";
+        enlace.download = "Video 3.mp4";
 
         document.body.appendChild(enlace);
 
