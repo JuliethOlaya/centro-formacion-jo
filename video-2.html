@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Video 2</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#f7f5ff;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.tarjeta{
+    background:white;
+    width:340px;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+h2{
+    color:#7B5CFA;
+    margin-top:0;
+    margin-bottom:25px;
+}
+
+button{
+    width:100%;
+    background:#7B5CFA;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:16px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.03);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="tarjeta">
+
+    <h2>🎥 Video 2</h2>
+
+    <button onclick="descargarVideo()" id="boton">
+        📥 Descargar video
+    </button>
+
+</div>
+
+<script>
+
+async function descargarVideo(){
+
+    const boton = document.getElementById("boton");
+
+    try{
+
+        const respuesta = await fetch("./Video%202.mp4");
+
+        if(!respuesta.ok){
+            throw new Error("No se encontró el video");
+        }
+
+        const archivo = await respuesta.blob();
+
+        const url = URL.createObjectURL(archivo);
+
+        const enlace = document.createElement("a");
+
+        enlace.href = url;
+
+        enlace.download = "Video 2.mp4";
+
+        document.body.appendChild(enlace);
+
+        enlace.click();
+
+        document.body.removeChild(enlace);
+
+        URL.revokeObjectURL(url);
+
+        boton.innerHTML = "✅ ¡Video descargado!";
+
+        setTimeout(() => {
+
+            boton.innerHTML = "📥 Descargar video";
+
+        },2000);
+
+    }catch(error){
+
+        boton.innerHTML = "❌ Error al descargar";
+
+        setTimeout(() => {
+
+            boton.innerHTML = "📥 Descargar video";
+
+        },2500);
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
