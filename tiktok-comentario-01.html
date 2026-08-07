@@ -76,24 +76,72 @@ button:hover{
 <h2>💬 Respuestas para comentarios</h2>
 
 <h4>
-💡 Utilízalas cuando una persona comente una de tus publicaciones.
+💡 Utilízalo cuando una persona comente una de tus publicaciones.
 </h4>
 
 <p>
-Aquí encontrarás <strong>3 opciones de respuesta</strong> que puedes variar y adaptar según la situación, para evitar repetir siempre el mismo mensaje y mantener una comunicación más natural con las personas interesadas.
+Este mensaje es corto para responder comentarios dentro de TikTok y dirigir a la persona hacia tu perfil o al chat privado.
 </p>
 
-<button onclick="abrirRespuestas()">
-📋 Copiar Texto
+<button onclick="copiarTexto()" id="boton">
+📋 Copiar texto
 </button>
 
 </div>
 
 <script>
 
-function abrirRespuestas(){
+async function copiarTexto(){
 
-window.location.href="https://julietholaya.github.io/centro-formacion-jo/tiktok-comentario-01.html";
+const boton=document.getElementById("boton");
+
+try{
+
+const respuesta=await fetch("https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/tiktok-comentario-01.txt");
+
+const texto=await respuesta.text();
+
+try{
+
+await navigator.clipboard.writeText(texto);
+
+}catch(e){
+
+const area=document.createElement("textarea");
+
+area.value=texto;
+
+document.body.appendChild(area);
+
+area.select();
+
+area.setSelectionRange(0,999999);
+
+document.execCommand("copy");
+
+document.body.removeChild(area);
+
+}
+
+boton.innerHTML="✅ ¡Texto copiado!";
+
+setTimeout(()=>{
+
+boton.innerHTML="📋 Copiar texto";
+
+},2000);
+
+}catch(error){
+
+boton.innerHTML="❌ Error";
+
+setTimeout(()=>{
+
+boton.innerHTML="📋 Copiar texto";
+
+},2000);
+
+}
 
 }
 
