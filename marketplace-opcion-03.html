@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Opción 3 - Marketplace</title>
+
+<style>
+
+body{
+    margin:0;
+    background:#f7f5ff;
+    font-family:Arial, Helvetica, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.tarjeta{
+    background:white;
+    width:340px;
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+}
+
+h2{
+    color:#7B5CFA;
+    margin-top:0;
+    margin-bottom:25px;
+}
+
+button{
+    width:100%;
+    background:#7B5CFA;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:16px;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:12px;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.02);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="tarjeta">
+
+<h2>🛒 Opción 3</h2>
+
+<button onclick="copiarTitulo()" id="btnTitulo">
+📋 Copiar título
+</button>
+
+<button onclick="copiarDescripcion()" id="btnDescripcion">
+📝 Copiar descripción
+</button>
+
+</div>
+
+<script>
+
+async function copiarArchivo(url, boton, textoOriginal, textoExito){
+
+try{
+
+const respuesta = await fetch(url);
+
+if(!respuesta.ok){
+throw new Error("No se encontró el archivo");
+}
+
+const texto = await respuesta.text();
+
+try{
+
+await navigator.clipboard.writeText(texto);
+
+}catch(e){
+
+const area = document.createElement("textarea");
+
+area.value = texto;
+
+document.body.appendChild(area);
+
+area.select();
+
+area.setSelectionRange(0,999999);
+
+document.execCommand("copy");
+
+document.body.removeChild(area);
+
+}
+
+boton.innerHTML = textoExito;
+
+setTimeout(()=>{
+
+boton.innerHTML = textoOriginal;
+
+},2000);
+
+}catch(error){
+
+boton.innerHTML = "❌ Error";
+
+setTimeout(()=>{
+
+boton.innerHTML = textoOriginal;
+
+},2000);
+
+}
+
+}
+
+function copiarTitulo(){
+
+copiarArchivo(
+
+"https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/marketplace-opcion-03-titulo.txt",
+
+document.getElementById("btnTitulo"),
+
+"📋 Copiar título",
+
+"✅ ¡Título copiado!"
+
+);
+
+}
+
+function copiarDescripcion(){
+
+copiarArchivo(
+
+"https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/marketplace-opcion-03-descripcion.txt",
+
+document.getElementById("btnDescripcion"),
+
+"📝 Copiar descripción",
+
+"✅ ¡Descripción copiada!"
+
+);
+
+}
+
+</script>
+
+</body>
+
+</html>
