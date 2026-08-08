@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Respuesta Rápida - WhatsApp</title>
+<title>Información de Medios</title>
 
 <style>
 
@@ -76,7 +78,7 @@ button:hover{
 
 <div class="tarjeta">
 
-<h2>📱 WhatsApp</h2>
+<h2>📱 Información de Medios</h2>
 
 <div class="subtitulo">
 💡 Utilízala cuando el cliente:
@@ -85,9 +87,9 @@ button:hover{
 <div class="descripcion">
 
 <ul>
-<li>Pregunte si todo el trabajo es por WhatsApp.</li>
-<li>Pregunte cómo se realiza la actividad.</li>
-<li>Quiera saber cómo será su trabajo.</li>
+<li>Solicite información sobre los medios disponibles.</li>
+<li>Necesite conocer más detalles antes de continuar.</li>
+<li>Ya haya recibido información previa y quiera avanzar.</li>
 </ul>
 
 </div>
@@ -110,10 +112,16 @@ try{
 
 const respuesta=await fetch(url);
 
+if(!respuesta.ok){
+throw new Error("No se encontró el archivo");
+}
+
 const texto=await respuesta.text();
 
 try{
+
 await navigator.clipboard.writeText(texto);
+
 }catch{
 
 const area=document.createElement("textarea");
@@ -162,7 +170,7 @@ function copiarAtajo(){
 
 copiar(
 
-"https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/whatsapp-atajo.txt",
+"https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/medios-atajo.txt",
 
 document.getElementById("btn1"),
 
@@ -176,7 +184,7 @@ function copiarRespuesta(){
 
 copiar(
 
-"https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/whatsapp-respuesta.txt",
+"https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/medios-respuesta.txt",
 
 document.getElementById("btn2"),
 
