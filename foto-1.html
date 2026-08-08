@@ -69,13 +69,29 @@ button:hover{
 
 <script>
 
-function descargarImagen(){
+async function descargarImagen(){
 
 const boton = document.getElementById("boton");
 
+try{
+
+boton.innerHTML = "⏳ Descargando...";
+
+const respuesta = await fetch(
+"https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/Foto%201.png"
+);
+
+if(!respuesta.ok){
+throw new Error("No se encontró la imagen");
+}
+
+const archivo = await respuesta.blob();
+
+const url = window.URL.createObjectURL(archivo);
+
 const enlace = document.createElement("a");
 
-enlace.href = "https://raw.githubusercontent.com/JuliethOlaya/centro-formacion-jo/main/Foto%201.png";
+enlace.href = url;
 
 enlace.download = "Foto 1.png";
 
@@ -85,6 +101,8 @@ enlace.click();
 
 document.body.removeChild(enlace);
 
+window.URL.revokeObjectURL(url);
+
 boton.innerHTML = "✅ ¡Imagen descargada!";
 
 setTimeout(()=>{
@@ -92,6 +110,18 @@ setTimeout(()=>{
 boton.innerHTML = "📥 Descargar imagen";
 
 },2000);
+
+}catch(error){
+
+boton.innerHTML = "❌ Error al descargar";
+
+setTimeout(()=>{
+
+boton.innerHTML = "📥 Descargar imagen";
+
+},2000);
+
+}
 
 }
 
