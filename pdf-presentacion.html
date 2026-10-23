@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,74 +8,73 @@
 <title>PDF de Presentación</title>
 
 <style>
-
-body{
-    margin:0;
-    background:#f7f5ff;
-    font-family:Arial, Helvetica, sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+* {
+    box-sizing: border-box;
 }
 
-.tarjeta{
-    background:white;
-    width:340px;
-    border-radius:18px;
-    padding:25px;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
+body {
+    margin: 0;
+    background: #f7f5ff;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
 }
 
-h2{
-    color:#7B5CFA;
-    margin-top:0;
-    margin-bottom:25px;
+.tarjeta {
+    background: white;
+    width: 100%;
+    max-width: 390px;
+    border-radius: 18px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,.12);
 }
 
-button{
-    width:100%;
-    background:#7B5CFA;
-    color:white;
-    border:none;
-    border-radius:12px;
-    padding:16px;
-    font-size:16px;
-    cursor:pointer;
-    transition:.3s;
+h2 {
+    color: #7B5CFA;
+    margin-top: 0;
+    margin-bottom: 25px;
 }
 
-button:hover{
-    transform:scale(1.03);
+.boton {
+    display: block;
+    width: 100%;
+    background: #7B5CFA;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform .3s;
 }
 
+.boton:hover {
+    transform: scale(1.03);
+}
 </style>
-
 </head>
 
 <body>
 
 <div class="tarjeta">
 
-<h2>📄 PDF de Presentación</h2>
+    <h2>📄 PDF de Presentación</h2>
 
-<button onclick="descargarPDF()">
-
-⬇️ Descargar PDF
-
-</button>
+    <a
+        class="boton"
+        href="https://julietholaya.github.io/centro-formacion-jo/TU%20ALIANZA%20HOGAR%20II.pdf"
+        target="_blank"
+        rel="noopener"
+    >
+        ⬇️ Descargar PDF
+    </a>
 
 </div>
 
-<script>
-
-
-
-function descargarPDF(){
-
-    window.location.href =
-        "https://julietholaya.github.io/centro-formacion-jo/TU%20ALIANZA%20HOGAR%20II.pdf";
-
-}
-
+</body>
+</html>
